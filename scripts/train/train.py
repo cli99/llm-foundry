@@ -99,11 +99,11 @@ def validate_config(cfg: DictConfig):
         act_ckpt = fsdp_config.get('activation_checkpointing', False)
         act_ckpt_reentrant = fsdp_config.get(
             'activation_checkpointing_reentrant', True)
-        if fsdp_config is not None and act_ckpt == True and act_ckpt_reentrant == False:
+        if fsdp_config is not None and act_ckpt == True and act_ckpt_reentrant == True:
             warnings.warn(
                 '`te.Linear` layers do not support activation_checkpointing with '
-                + '`activation_checkpointing_reentrant = False`. ' +
-                'Setting cfg.fsdp_config.activation_checkpointing_reentrant=True.'
+                + '`activation_checkpointing_reentrant = True`. ' +
+                'Setting cfg.fsdp_config.activation_checkpointing_reentrant=False.'
             )
             cfg.fsdp_config.activation_checkpointing_reentrant = True
 
